@@ -1,9 +1,28 @@
+script_name("Updater Test")
+script_version("1.0")
+
+require "lib.moonloader"
+
+local dlstatus = require("moonloader").download_status
+
 local UPDATE_INFO = getWorkingDirectory() .. "\\resource\\update.txt"
 local UPDATE_FILE = getWorkingDirectory() .. "\\resource\\lawassist_update.lua"
 local INSTALLER_FILE = getWorkingDirectory() .. "\\installer.lua"
 
-local INSTALLER_URL = "https://raw.githubusercontent.com/impachi1337/lawassistupd/refs/heads/main/installer.lua"
-local SCRIPT_URL = "https://raw.githubusercontent.com/impachi1337/lawassistupd/refs/heads/main/test.lua"
+local INSTALLER_URL = "https://raw.githubusercontent.com/impachi1337/lawassistupd/main/installer.lua"
+local SCRIPT_URL = "https://raw.githubusercontent.com/impachi1337/lawassistupd/main/test.lua"
+
+function main()
+    repeat wait(0) until isSampAvailable()
+
+    sampRegisterChatCommand("update", installUpdate)
+
+    sampAddChatMessage("[Updater] Loaded", -1)
+
+    while true do
+        wait(0)
+    end
+end
 
 function installUpdate()
 
@@ -15,7 +34,7 @@ function installUpdate()
 
         f:close()
 
-        sampAddChatMessage("[Updater] Выгружаюсь...", -1)
+        sampAddChatMessage("[Updater] Р’С‹РіСЂСѓР¶Р°СЋСЃСЊ...", -1)
 
         thisScript():unload()
     end
@@ -28,7 +47,7 @@ function installUpdate()
                 if status == dlstatus.STATUS_ENDDOWNLOADDATA then
 
                     sampAddChatMessage(
-                        "[Updater] Новый файл скачан",
+                        "[Updater] РќРѕРІС‹Р№ С„Р°Р№Р» СЃРєР°С‡Р°РЅ",
                         -1
                     )
 
@@ -41,7 +60,7 @@ function installUpdate()
     if not doesFileExist(INSTALLER_FILE) then
 
         sampAddChatMessage(
-            "[Updater] Качаем installer.lua",
+            "[Updater] РљР°С‡Р°РµРј installer.lua",
             -1
         )
 
