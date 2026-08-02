@@ -4,7 +4,7 @@ local dlstatus = require("moonloader").download_status
 
 local SCRIPT_VERSION = "1.0"
 
-local VERSION_URL = "https://raw.githubusercontent.com/USER/REPO/main/version.json"
+local VERSION_URL = "https://raw.githubusercontent.com/impachi1337/lawassistupd/refs/heads/main/version.json"
 local TEMP_JSON = getWorkingDirectory() .. "\\update_info.json"
 
 function main()
@@ -13,7 +13,7 @@ function main()
     sampRegisterChatCommand("update", checkUpdate)
 
     sampAddChatMessage(
-        string.format("[TEST] Загружен. Версия: %s", SCRIPT_VERSION),
+        string.format("[TEST] Г‡Г ГЈГ°ГіГ¦ГҐГ­. Г‚ГҐГ°Г±ГЁГї: %s", SCRIPT_VERSION),
         -1
     )
 
@@ -27,7 +27,7 @@ function checkUpdate()
         os.remove(TEMP_JSON)
     end
 
-    sampAddChatMessage("[Updater] Проверяем обновления...", -1)
+    sampAddChatMessage("[Updater] ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї...", -1)
 
     downloadUrlToFile(VERSION_URL, TEMP_JSON, function(id, status)
         if status ~= dlstatus.STATUS_ENDDOWNLOADDATA then
@@ -36,7 +36,7 @@ function checkUpdate()
 
         local file = io.open(TEMP_JSON, "r")
         if not file then
-            sampAddChatMessage("[Updater] Не удалось открыть JSON.", -1)
+            sampAddChatMessage("[Updater] ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГІГЄГ°Г»ГІГј JSON.", -1)
             return
         end
 
@@ -49,34 +49,34 @@ function checkUpdate()
         local scriptUrl = data:match('"script_url"%s*:%s*"([^"]+)"')
 
         if not version or not scriptUrl then
-            sampAddChatMessage("[Updater] Ошибка JSON.", -1)
+            sampAddChatMessage("[Updater] ГЋГёГЁГЎГЄГ  JSON.", -1)
             return
         end
 
         if version == SCRIPT_VERSION then
-            sampAddChatMessage("[Updater] Обновлений нет.", -1)
+            sampAddChatMessage("[Updater] ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГ© Г­ГҐГІ.", -1)
             return
         end
 
         sampAddChatMessage(
-            string.format("[Updater] Найдена версия %s", version),
+            string.format("[Updater] ГЌГ Г©Г¤ГҐГ­Г  ГўГҐГ°Г±ГЁГї %s", version),
             -1
         )
 
-        sampAddChatMessage("[Updater] Что нового:", -1)
+        sampAddChatMessage("[Updater] Г—ГІГ® Г­Г®ГўГ®ГЈГ®:", -1)
 
         for change in data:gmatch('"%s*([^"]-)%s*"') do
             if change ~= version and change ~= scriptUrl then
-                sampAddChatMessage("  • " .. change, -1)
+                sampAddChatMessage("  вЂў " .. change, -1)
             end
         end
 
-        sampAddChatMessage("[Updater] Скачиваем...", -1)
+        sampAddChatMessage("[Updater] Г‘ГЄГ Г·ГЁГўГ ГҐГ¬...", -1)
 
         downloadUrlToFile(scriptUrl, thisScript().path, function(_, st)
             if st == dlstatus.STATUS_ENDDOWNLOADDATA then
                 sampAddChatMessage(
-                    "[Updater] Готово. Перезагружаем...",
+                    "[Updater] ГѓГ®ГІГ®ГўГ®. ГЏГҐГ°ГҐГ§Г ГЈГ°ГіГ¦Г ГҐГ¬...",
                     -1
                 )
 
