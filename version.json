@@ -1,0 +1,10 @@
+{
+    "version": "1.1",
+    "script_url": "https://raw.githubusercontent.com/USERNAME/LawAssist/main/LawAssist.lua",
+    "changelog": [
+        "Добавлена система автообновления",
+        "Исправлен HUD",
+        "Добавлены звуки меню",
+        "Улучшена статистика"
+    ]
+}
