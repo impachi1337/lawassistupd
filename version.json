@@ -1,6 +1,6 @@
 {
     "version": "1.1",
-    "script_url": "https://raw.githubusercontent.com/USERNAME/LawAssist/main/LawAssist.lua",
+    "script_url": "https://github.com/impachi1337/lawassistupd/raw/refs/heads/main/test.lua",
     "changelog": [
         "Добавлена система автообновления",
         "Исправлен HUD",
